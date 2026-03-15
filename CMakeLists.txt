@@ -9,12 +9,28 @@ find_package(glad CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 find_package(assimp CONFIG REQUIRED)
 
-file(GLOB_RECURSE SOURCES
-        src/*.cpp
-        src/*.h
+add_executable(${PROJECT_NAME}
+        src/main.cpp
+        src/Node.cpp
+        src/Scene.cpp
+        src/components/MeshComponent.cpp
+        src/stb_image.cpp
+        src/graphics/AssetManager.cpp
+        src/graphics/Shader.cpp
+        src/graphics/Shader.h
+        src/graphics/Model.cpp
+        src/graphics/Model.h
+        src/graphics/Mesh.cpp
+        src/graphics/Mesh.h
+        src/graphics/Camera.cpp
+        src/graphics/Camera.h
 )
 
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_custom_command(TARGET pine_engine POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/assets
+        $<TARGET_FILE_DIR:pine_engine>/assets
+)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
         src/
