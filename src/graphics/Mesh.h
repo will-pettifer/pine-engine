@@ -12,6 +12,7 @@
 
 #include "Shader.h"
 
+#include <memory>
 #include <string>
 #include <vector>
 using namespace std;

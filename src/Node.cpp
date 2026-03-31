@@ -8,6 +8,8 @@
 
 #include <print>
 
+Node::Node() {}
+
 std::weak_ptr<Node> Node::GetParent() { return parent; }
 void Node::SetParent(std::weak_ptr<Node> parent) { this->parent = parent; }
 

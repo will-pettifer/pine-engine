@@ -12,14 +12,9 @@
 #include <string>
 
 class Node : public std::enable_shared_from_this<Node> {
-private:
-  bool hasEnteredTree = false;
-
-  std::weak_ptr<Node> parent;
-  std::list<std::shared_ptr<Node>> children;
-  std::list<std::shared_ptr<Node>> deleteQueue;
-
 public:
+  Node();
+
   std::string name;
 
   glm::vec3 position = {0, 0, 0};
@@ -41,6 +36,13 @@ public:
   void DeleteQueue();
 
   void Input();
+
+private:
+  bool hasEnteredTree = false;
+
+  std::weak_ptr<Node> parent;
+  std::list<std::shared_ptr<Node>> children;
+  std::list<std::shared_ptr<Node>> deleteQueue;
 };
 
 #endif // PINE_ENGINE_NODE_H
