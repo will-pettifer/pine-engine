@@ -61,8 +61,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
       vertex.Normal = vector;
     }
 
-    if (mesh->mTextureCoords[0])
-    {
+    if (mesh->mTextureCoords[0]) {
       glm::vec2 vec;
       vec.x = mesh->mTextureCoords[0][i].x;
       vec.y = mesh->mTextureCoords[0][i].y;
@@ -77,11 +76,11 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
       vector.y = mesh->mBitangents[i].y;
       vector.z = mesh->mBitangents[i].z;
       vertex.Bitangent = vector;
-    } else vertex.TexCoords = glm::vec2(0.0f, 0.0f);
+    } else
+      vertex.TexCoords = glm::vec2(0.0f, 0.0f);
 
     vertices.push_back(vertex);
   }
-
   for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
     aiFace face = mesh->mFaces[i];
     // retrieve all indices of the face and store them in the indices vector
@@ -130,8 +129,7 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type,
       texture.type = typeName;
       texture.path = str.C_Str();
       textures.push_back(texture);
-      textures_loaded.push_back(
-          texture);
+      textures_loaded.push_back(texture);
     }
   }
   return textures;

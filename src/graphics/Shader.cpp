@@ -46,7 +46,6 @@ void Shader::Init(const char *vertexPath, const char *fragmentPath) {
   glAttachShader(ID, fragment);
   glLinkProgram(ID);
   checkCompileErrors(ID, "PROGRAM");
-
   glDeleteShader(vertex);
   glDeleteShader(fragment);
 }
