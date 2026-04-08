@@ -11,7 +11,7 @@ find_package(assimp CONFIG REQUIRED)
 
 add_executable(${PROJECT_NAME}
         src/main.cpp
-        src/Node.cpp
+        src/nodes/Node.cpp
         src/Scene.cpp
         src/components/MeshComponent.cpp
         src/stb_image.cpp
@@ -24,6 +24,11 @@ add_executable(${PROJECT_NAME}
         src/graphics/Mesh.h
         src/graphics/Camera.cpp
         src/graphics/Camera.h
+        src/nodes/SpinningCube.h
+        src/Helpers.h
+        src/nodes/GameManager.cpp
+        src/nodes/GameManager.h
+        src/nodes/Orbiter.h
 )
 
 add_custom_command(TARGET pine_engine POST_BUILD

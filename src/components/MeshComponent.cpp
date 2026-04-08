@@ -6,11 +6,11 @@
 
 #include "graphics/AssetManager.h"
 
-void MeshComponent::Update(float delta) {
-  glm::mat4 t = glm::translate(glm::mat4(1.0f), position);
-  glm::mat4 r = glm::mat4_cast(rotation);
-  glm::mat4 s = glm::scale(glm::mat4(1.0f), scale);
-  glm::mat4 transform = t * r * s;
+MeshComponent::MeshComponent(string model) {
+  name = "MeshComponent";
+  modelPath = model + "/" + model + ".obj";
+}
 
+void MeshComponent::Render(glm::mat4 transform) {
   AssetManager::AddDrawCall({modelPath, transform});
 }

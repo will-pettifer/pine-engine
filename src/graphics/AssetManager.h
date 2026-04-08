@@ -10,8 +10,6 @@
 #include "Shader.h"
 
 #include <memory>
-#include <optional>
-#include <glm/glm.hpp>
 #include <string>
 
 using namespace std;

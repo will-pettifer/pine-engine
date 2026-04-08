@@ -2,18 +2,22 @@
 // Created by will-pettifer on 10/03/2026.
 //
 
-#include "Node.h"
+#include "../nodes/Node.h"
 
-#include "Scene.h"
+#include "../Scene.h"
 
+#include <iostream>
+#include <ostream>
 #include <print>
 
 Node::Node() {}
 
 std::weak_ptr<Node> Node::GetParent() { return parent; }
+
 void Node::SetParent(std::weak_ptr<Node> parent) { this->parent = parent; }
 
 std::list<std::shared_ptr<Node>> Node::GetChildren() { return children; }
+
 void Node::AddChild(std::shared_ptr<Node> child) {
   children.push_back(child);
   if (auto locked = child->GetParent().lock()) {
@@ -25,6 +29,7 @@ void Node::AddChild(std::shared_ptr<Node> child) {
     child->OnEnterTree();
   }
 }
+
 void Node::RemoveChild(std::shared_ptr<Node> child) {
   std::erase(children, child);
 }
@@ -36,7 +41,11 @@ void Node::QueueDelete() {
 }
 
 void Node::OnEnterTree() {}
+
 void Node::Update(float delta) {}
+
+void Node::Render(glm::mat4 transform) {}
+
 void Node::DeleteQueue() {
   for (auto &child : deleteQueue) {
     RemoveChild(child);

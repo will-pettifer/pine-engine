@@ -4,6 +4,12 @@
 
 #include "Scene.h"
 
+#include "graphics/AssetManager.h"
+
+#include <iostream>
+
+Scene::Scene() {}
+
 void Scene::RecursiveInput(GLFWwindow *window, std::shared_ptr<Node> node) {
   for (auto &child : node->GetChildren()) {
     RecursiveInput(window, child);
@@ -22,9 +28,15 @@ void Scene::RecursiveDeleteQueue(std::shared_ptr<Node> node) {
     RecursiveDeleteQueue(child);
   }
 }
-void Scene::RecursiveRender(std::shared_ptr<Node> node) {
+void Scene::RecursiveRender(std::shared_ptr<Node> node, glm::mat4 transform) {
+  glm::mat4 t = glm::translate(glm::mat4(1.0f), node->position);
+  glm::mat4 r = glm::mat4_cast(node->rotation);
+  glm::mat4 s = glm::scale(glm::mat4(1.0f), node->scale);
+  transform = transform * t * r * s;
+  node->Render(transform);
+
   for (auto &child : node->GetChildren()) {
-    RecursiveRender(child);
+    RecursiveRender(child, transform);
   }
 }
 
@@ -35,5 +47,5 @@ void Scene::Update(float delta, GLFWwindow *window) {
   RecursiveInput(window, root);
   RecursiveUpdate(delta, root);
   RecursiveDeleteQueue(root);
-  RecursiveRender(root);
+  RecursiveRender(root, glm::mat4(1.0f));
 }

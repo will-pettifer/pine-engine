@@ -5,22 +5,25 @@
 #ifndef PINE_ENGINE_SCENE_H
 #define PINE_ENGINE_SCENE_H
 
-#include <list>
 #include <memory>
-
-#include "Node.h"
-
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+#include "nodes/Node.h"
+
+using namespace std;
 
 class Scene {
 private:
-  void RecursiveInput(GLFWwindow *window, std::shared_ptr<Node> node);
-  void RecursiveUpdate(float delta, std::shared_ptr<Node> node);
-  void RecursiveDeleteQueue(std::shared_ptr<Node> node);
-  void RecursiveRender(std::shared_ptr<Node> node);
+  void RecursiveInput(GLFWwindow *window, shared_ptr<Node> node);
+  void RecursiveUpdate(float delta, shared_ptr<Node> node);
+  void RecursiveDeleteQueue(shared_ptr<Node> node);
+  void RecursiveRender(shared_ptr<Node> node, glm::mat4 transform);
 
 public:
-  std::shared_ptr<Node> root;
+  Scene();
+
+  shared_ptr<Node> root = make_shared<Node>();
 
   void Update(float delta, GLFWwindow *window);
 };

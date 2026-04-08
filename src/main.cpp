@@ -14,6 +14,8 @@
 #include "graphics/Camera.h"
 #include "graphics/Model.h"
 #include "graphics/Shader.h"
+#include "nodes/GameManager.h"
+#include "nodes/SpinningCube.h"
 
 #include <iostream>
 
@@ -82,7 +84,7 @@ int main() {
 
   AssetManager::Init(&camera, (float)SCR_WIDTH, (float)SCR_HEIGHT);
   Scene scene;
-  scene.root->AddChild(make_shared<MeshComponent>());
+  scene.root->AddChild(make_shared<GameManager>());
 
   // draw in wireframe
   // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -96,6 +98,11 @@ int main() {
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
 
+    scene.Update(deltaTime, window);
+
+    // auto trans = glm::mat4(1.0f);
+    // AssetManager::AddDrawCall({"cube/cube.obj", trans});
+
     // input
     // -----
     processInput(window);
@@ -106,7 +113,6 @@ int main() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     AssetManager::Draw();
-    scene.Update(deltaTime, window);
 
     // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved
     // etc.)

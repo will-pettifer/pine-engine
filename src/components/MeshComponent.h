@@ -4,13 +4,14 @@
 
 #ifndef PINE_ENGINE_MESHCOMPONENT_H
 #define PINE_ENGINE_MESHCOMPONENT_H
-#include "Node.h"
+#include "../nodes/Node.h"
 
 using namespace std;
 
 class MeshComponent : public Node {
 public:
-  void Update(float delta);
+  MeshComponent(string model);
+  void Render(glm::mat4 transform);
 
 private:
   string modelPath = "cube/cube.obj";
