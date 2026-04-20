@@ -20,11 +20,11 @@ public:
     direction -= glm::vec3(0.5f);
     direction = normalize(direction);
     speed = hlp::RandFloat() * 5;
-    rotationSpeed = hlp::RandFloat() * 5;
+    rotationSpeed = 2;
   }
 
   void Update(float delta) override {
-    position += direction * delta * speed;
+    // position += direction * delta * speed;
     rotation *= glm::angleAxis(delta * rotationSpeed, glm::vec3{0, 1, 0});
   }
 };

@@ -50,7 +50,7 @@ void Shader::Init(const char *vertexPath, const char *fragmentPath) {
   glDeleteShader(fragment);
 }
 
-void Shader::use() const { glUseProgram(ID); }
+void Shader::Use() const { glUseProgram(ID); }
 
 void Shader::setBool(const std::string &name, bool value) const {
   glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);

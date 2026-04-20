@@ -20,8 +20,7 @@ public:
   Scene();
 
   shared_ptr<Node> root = make_shared<Node>();
-  Camera camera = Camera(glm::vec3(0.0f, 0.0f, 3.0f));
-
+  Camera camera = Camera(glm::vec3(0.0f, 0.0f, 6.0f));
 
   void Update(float delta, GLFWwindow *window);
 

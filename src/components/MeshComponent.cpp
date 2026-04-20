@@ -6,11 +6,12 @@
 
 #include "graphics/AssetManager.h"
 
-MeshComponent::MeshComponent(string model) {
+MeshComponent::MeshComponent(string model, string shader) {
   name = "MeshComponent";
-  modelPath = model + "/" + model + ".obj";
+  modelPath = model;
+  shaderPath = shader;
 }
 
 void MeshComponent::Render(glm::mat4 transform) {
-  AssetManager::AddDrawCall({modelPath, transform});
+  AssetManager::AddDrawCall({modelPath, shaderPath, transform});
 }

@@ -16,7 +16,7 @@ public:
   unsigned int ID;
 
   void Init(const char *vertexPath, const char *fragmentPath);
-  void use() const;
+  void Use() const;
 
   void setBool(const std::string &name, bool value) const;
 

@@ -20,18 +20,20 @@ public:
 
   struct DrawCall {
     string modelPath;
+    string shaderPath;
     glm::mat4 transform;
   };
 
   static void AddDrawCall(DrawCall drawCall);
   static void Draw();
-  static weak_ptr<Model> FindModel(string path);
+  static shared_ptr<Shader> FindShader(string path);
+  static shared_ptr<Model> FindModel(string path);
 
 private:
   static inline glm::vec2 screen;
-  static inline Shader shader;
   static inline Camera *camera = nullptr;
   static inline vector<DrawCall> drawCalls;
+  static inline unordered_map<string, shared_ptr<Shader>> shaderCache;
   static inline unordered_map<string, shared_ptr<Model>> modelCache;
 };
 

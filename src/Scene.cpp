@@ -22,6 +22,10 @@ void Scene::Update(float delta, GLFWwindow *window) {
     camera.ProcessKeyboard(LEFT, delta);
   if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
     camera.ProcessKeyboard(RIGHT, delta);
+  if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+    camera.ProcessKeyboard(UP, delta);
+  if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+    camera.ProcessKeyboard(DOWN, delta);
 
   RecursiveInput(window, root);
   RecursiveUpdate(delta, root);

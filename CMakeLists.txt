@@ -29,13 +29,17 @@ add_executable(${PROJECT_NAME}
         src/nodes/GameManager.cpp
         src/nodes/GameManager.h
         src/nodes/Orbiter.h
+        src/nodes/PointLight.cpp
+        src/nodes/PointLight.h
 )
 
-add_custom_command(TARGET pine_engine POST_BUILD
+add_custom_target(copy_assets ALL
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/assets
         $<TARGET_FILE_DIR:pine_engine>/assets
+        COMMENT "Copying assets..."
 )
+add_dependencies(pine_engine copy_assets)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
         src/

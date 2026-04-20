@@ -10,11 +10,12 @@ using namespace std;
 
 class MeshComponent : public Node {
 public:
-  MeshComponent(string model);
+  MeshComponent(string model = "cube", string shader = "ps1");
   void Render(glm::mat4 transform);
 
 private:
-  string modelPath = "cube/cube.obj";
+  string modelPath;
+  string shaderPath;
 };
 
 #endif // PINE_ENGINE_MESHCOMPONENT_H
