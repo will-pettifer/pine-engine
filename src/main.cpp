@@ -93,6 +93,7 @@ int main() {
   }
 
   glEnable(GL_DEPTH_TEST);
+  glEnable(GL_CULL_FACE);
 
   u_int fbo, fboTex, fboDepth;
 

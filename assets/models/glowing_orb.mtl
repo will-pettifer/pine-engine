@@ -1,7 +1,7 @@
-# Blender MTL File: 'ship.blend'
+# Blender MTL File: 'glowing_orb.blend'
 # Material Count: 1
 
-newmtl m_ship
+newmtl m_glowing_orb
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
@@ -10,4 +10,4 @@ Ke 0.000000 0.000000 0.000000
 Ni 1.450000
 d 1.000000
 illum 2
-map_Kd texture_diffuse1.png
+map_Kd textures/t_glowing_orb.png
