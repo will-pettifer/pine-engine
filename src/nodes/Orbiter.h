@@ -23,7 +23,7 @@ public:
   }
 
   void Update(float delta) override {
-    age += delta;
+    age += (1 / (size * size)) * delta * 0.2;
     position =
         glm::vec3{cos(age / orbitalDistance), sin(age / orbitalDistance), 0} *
         orbitalDistance;

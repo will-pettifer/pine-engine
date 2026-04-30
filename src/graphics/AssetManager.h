@@ -39,6 +39,8 @@ public:
     glm::mat4 transform;
   };
 
+  static inline glm::vec3 ambientLight = glm::vec3(0.3, 0.3, 0.4);
+
   static void AddDirectionalLight(DirectionalLight dLight);
   static void AddPointLight(PointLight pointLight);
   static void AddDrawCall(DrawCall drawCall);

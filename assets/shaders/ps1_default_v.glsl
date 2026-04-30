@@ -4,6 +4,9 @@ layout (location = 1) in vec3 aNormal;
 layout (location = 2) in vec2 aTexCoords;
 
 #define MAX_LIGHTS 16
+
+uniform vec3 ambientLight;
+
 struct PointLight {
     vec3 position;
     vec3 colour;
@@ -39,11 +42,11 @@ void main()
     gl_Position = projection * view * worldPos;
     gl_Position.xy = round(gl_Position.xy * 10) / 10;
 
-    vec3 lighting = vec3(0.3);
+    vec3 lighting = ambientLight;
 
     if (dLight.enabled) {
         vec3 lightDir = normalize(-dLight.direction);
-        float diffuse = max(dot(normal, lightDir), 0.0);
+        float diffuse = pow(max(dot(normal, lightDir), 0.0), 1);
         lighting += dLight.colour * diffuse * dLight.intensity;
     }
 

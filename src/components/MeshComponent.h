@@ -10,7 +10,7 @@ using namespace std;
 
 class MeshComponent : public Node {
 public:
-  explicit MeshComponent(string model = "cube", string shader = "ps1");
+  explicit MeshComponent(string model = "cube", string shader = "ps1_default");
   void Render(glm::mat4 transform) override;
 
 private:

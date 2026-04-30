@@ -52,6 +52,7 @@ void AssetManager::Draw() {
       shader->setMat4("projection", projection);
       shader->setMat4("view", view);
 
+      shader->setVec3("ambientLight", ambientLight);
       shader->setBool("dLight.enabled", directionalLight.has_value());
       if (directionalLight.has_value()) {
         shader->setVec3("dLight.direction", directionalLight->direction);
@@ -101,7 +102,6 @@ shared_ptr<Model> AssetManager::FindModel(string path) {
   if (it != modelCache.end())
     return it->second;
 
-  return modelCache
-      .emplace(path, make_shared<Model>(path + "/" + path + ".obj"))
+  return modelCache.emplace(path, make_shared<Model>(path + ".obj"))
       .first->second;
 }

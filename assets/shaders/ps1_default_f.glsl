@@ -22,6 +22,7 @@ void main()
 
     colour.rgb += threshold / 31;
     colour.rgb = floor(colour.rgb * vertexColour * 31) / 31;
+    //    colour.rgb = colour.rgb * vertexColour;
 
     FragColor = colour;
 }
