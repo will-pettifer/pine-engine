@@ -22,7 +22,7 @@ struct DirectionalLight {
 };
 uniform DirectionalLight dLight;
 
-out vec3 vertexColour;
+noperspective out vec3 vertexColour;
 noperspective out vec2 TexCoords;
 
 uniform mat4 model;

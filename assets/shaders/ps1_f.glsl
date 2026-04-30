@@ -1,7 +1,7 @@
 #version 330 core
 out vec4 FragColor;
 
-in vec3 vertexColour;
+noperspective in vec3 vertexColour;
 noperspective in vec2 TexCoords;
 
 uniform sampler2D albedo;

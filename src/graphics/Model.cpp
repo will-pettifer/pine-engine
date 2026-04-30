@@ -24,7 +24,8 @@ void Model::LoadModel(string const &path) {
   string fullPath = "assets/models/" + path;
   const aiScene *scene = importer.ReadFile(
       fullPath, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
-                    aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+                    aiProcess_ForceGenNormals | aiProcess_FlipUVs |
+                    aiProcess_CalcTangentSpace);
 
   if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE ||
       !scene->mRootNode) {

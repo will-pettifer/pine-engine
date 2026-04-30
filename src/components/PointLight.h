@@ -12,16 +12,19 @@ public:
   glm::vec3 colour;
   float intensity;
   float radius;
+  float innerRadius;
 
   PointLight(glm::vec3 colour = {1, 1, 1}, float intensity = 1,
-             float radius = 5) {
+             float radius = 5, float innerRadius = 1) {
     this->colour = colour;
     this->intensity = intensity;
     this->radius = radius;
+    this->innerRadius = innerRadius;
   }
 
   void Render(glm::mat4 transform) override {
-    AssetManager::AddPointLight({colour, position, radius, intensity});
+    AssetManager::AddPointLight(
+        {colour, position, radius, innerRadius, intensity});
   }
 };
 

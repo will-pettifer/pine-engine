@@ -65,6 +65,7 @@ void AssetManager::Draw() {
         shader->setVec3(base + ".colour", pointLights[i].colour);
         shader->setVec3(base + ".position", pointLights[i].position);
         shader->setFloat(base + ".radius", pointLights[i].radius);
+        shader->setFloat(base + ".innerRadius", pointLights[i].innerRadius);
         shader->setFloat(base + ".intensity", pointLights[i].intensity);
       }
     }

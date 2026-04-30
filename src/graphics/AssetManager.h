@@ -29,6 +29,7 @@ public:
     glm::vec3 colour;
     glm::vec3 position;
     float radius;
+    float innerRadius;
     float intensity;
   };
 
