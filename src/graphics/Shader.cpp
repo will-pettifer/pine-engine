@@ -3,6 +3,9 @@
 //
 
 #include "Shader.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 void Shader::Init(const char *vertexPath, const char *fragmentPath) {
   std::string vertexCode;
@@ -29,7 +32,7 @@ void Shader::Init(const char *vertexPath, const char *fragmentPath) {
 
   const char *vShaderCode = vertexCode.c_str();
   const char *fShaderCode = fragmentCode.c_str();
-  unsigned int vertex, fragment;
+  u_int vertex, fragment;
 
   vertex = glCreateShader(GL_VERTEX_SHADER);
   glShaderSource(vertex, 1, &vShaderCode, NULL);

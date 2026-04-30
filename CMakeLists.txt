@@ -29,8 +29,10 @@ add_executable(${PROJECT_NAME}
         src/nodes/GameManager.cpp
         src/nodes/GameManager.h
         src/nodes/Orbiter.h
-        src/nodes/PointLight.cpp
-        src/nodes/PointLight.h
+        src/components/PointLight.cpp
+        src/components/PointLight.h
+        src/components/DirectionalLight.cpp
+        src/components/DirectionalLight.h
 )
 
 add_custom_target(copy_assets ALL

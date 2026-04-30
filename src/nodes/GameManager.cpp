@@ -5,14 +5,21 @@
 #include "nodes/GameManager.h"
 
 #include "Orbiter.h"
-#include "PointLight.h"
+#include "../components/PointLight.h"
 #include "SpinningCube.h"
 #include "../components/MeshComponent.h"
+#include "components/DirectionalLight.h"
 
 #include <iostream>
 
 void GameManager::OnEnterTree() {
-  shared_ptr<PointLight> light = make_shared<PointLight>();
+  shared_ptr<DirectionalLight> dLight =
+      make_shared<DirectionalLight>(glm::vec3(1), 0.5f);
+  AddChild(dLight);
+  dLight->rotation *=
+      glm::angleAxis(glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+  shared_ptr<PointLight> light = make_shared<PointLight>(glm::vec3(1, 0, 0));
   AddChild(light);
   light->AddChild(make_shared<MeshComponent>("glowing_orb", "ps1"));
 

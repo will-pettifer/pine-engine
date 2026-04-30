@@ -4,6 +4,14 @@
 
 #include "Model.h"
 
+#include <assimp/postprocess.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <stb_image.h>
+#include <fstream>
+#include <iostream>
+#include <map>
+
 Model::Model(string const &path) { LoadModel(path); }
 
 void Model::Draw(Shader &shader) {

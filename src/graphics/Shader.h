@@ -6,14 +6,11 @@
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
-#include <fstream>
-#include <iostream>
-#include <sstream>
 #include <string>
 
 class Shader {
 public:
-  unsigned int ID;
+  u_int ID;
 
   void Init(const char *vertexPath, const char *fragmentPath);
   void Use() const;

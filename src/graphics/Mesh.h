@@ -33,16 +33,16 @@ struct Texture {
 class Mesh {
 public:
   vector<Vertex> vertices;
-  vector<unsigned int> indices;
+  vector<u_int> indices;
   Texture texture;
   u_int VAO;
 
-  Mesh(vector<Vertex> vertices, vector<unsigned int> indices, Texture texture);
+  Mesh(vector<Vertex> vertices, vector<u_int> indices, Texture texture);
 
   void Draw(Shader &shader);
 
 private:
-  unsigned int VBO, EBO;
+  u_int VBO, EBO;
 
   void setupMesh();
 };

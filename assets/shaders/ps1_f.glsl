@@ -1,7 +1,7 @@
 #version 330 core
 out vec4 FragColor;
 
-in vec3 Normal;
+in vec3 vertexColour;
 noperspective in vec2 TexCoords;
 
 uniform sampler2D albedo;
@@ -21,7 +21,7 @@ void main()
     float threshold = bayer[pos.x][pos.y];
 
     colour.rgb += threshold / 31;
-    colour.rgb = floor(colour.rgb * 31) / 31;
+    colour.rgb = floor(colour.rgb * vertexColour * 31) / 31;
 
     FragColor = colour;
 }

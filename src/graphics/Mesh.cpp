@@ -4,8 +4,7 @@
 
 #include "Mesh.h"
 
-Mesh::Mesh(vector<Vertex> vertices, vector<unsigned int> indices,
-           Texture texture) {
+Mesh::Mesh(vector<Vertex> vertices, vector<u_int> indices, Texture texture) {
   this->vertices = vertices;
   this->indices = indices;
   this->texture = texture;
@@ -35,7 +34,7 @@ void Mesh::setupMesh() {
                GL_STATIC_DRAW);
 
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int),
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(u_int),
                &indices[0], GL_STATIC_DRAW);
 
   glEnableVertexAttribArray(0);
