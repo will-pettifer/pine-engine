@@ -9,7 +9,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "graphics/Camera.h"
+#include "nodes/Camera.h"
 #include "graphics/Model.h"
 #include "graphics/Shader.h"
 #include "nodes/GameManager.h"
@@ -129,7 +129,7 @@ int main() {
   u_int blitVAO;
   glGenVertexArrays(1, &blitVAO);
 
-  AssetManager::Init(&scene.camera, (float)FRAME_WIDTH, (float)FRAME_HEIGHT);
+  AssetManager::Init((float)FRAME_WIDTH, (float)FRAME_HEIGHT);
   scene.root->AddChild(make_shared<GameManager>());
 
   // ===[ Render Loop ]===
@@ -146,7 +146,9 @@ int main() {
     glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     AssetManager::Draw();
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glDisable(GL_DEPTH_TEST);
@@ -190,9 +192,9 @@ void mouse_callback(GLFWwindow *window, double xposIn, double yposIn) {
   lastX = xpos;
   lastY = ypos;
 
-  scene.camera.ProcessMouseMovement(xoffset, yoffset);
+  scene.ProcessMouseMovement(xoffset, yoffset);
 }
 
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset) {
-  scene.camera.ProcessMouseScroll(static_cast<float>(yoffset));
+  scene.ProcessMouseScroll(static_cast<float>(yoffset));
 }

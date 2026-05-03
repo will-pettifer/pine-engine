@@ -90,7 +90,7 @@ Mesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene) {
       AI_SUCCESS) {
     string texPath = albedoFile.C_Str();
     bool skip = false;
-    for (auto &loaded : textures_loaded) {
+    for (auto &loaded : texturesLoaded) {
       if (loaded.path == texPath) {
         texture = loaded;
         skip = true;
@@ -101,7 +101,7 @@ Mesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene) {
       string fullTexPath = directory + "/" + texPath;
       texture.id = TextureFromFile(fullTexPath.c_str());
       texture.path = texPath;
-      textures_loaded.push_back(texture);
+      texturesLoaded.push_back(texture);
     }
   }
 

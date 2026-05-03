@@ -5,7 +5,7 @@
 #ifndef PINE_ENGINE_ASSETMANAGER_H
 #define PINE_ENGINE_ASSETMANAGER_H
 
-#include "Camera.h"
+#include "../nodes/Camera.h"
 #include "Model.h"
 #include "Shader.h"
 
@@ -17,7 +17,7 @@ using namespace std;
 
 class AssetManager {
 public:
-  static void Init(Camera *cam, float scrWidth, float scrHeight);
+  static void Init(float scrWidth, float scrHeight);
 
   struct DirectionalLight {
     glm::vec3 colour;
@@ -39,7 +39,7 @@ public:
     glm::mat4 transform;
   };
 
-  static inline glm::vec3 ambientLight = glm::vec3(0.3, 0.3, 0.4);
+  static inline glm::vec3 ambientLight = glm::vec3(0.2, 0.2, 0.4);
 
   static void AddDirectionalLight(DirectionalLight dLight);
   static void AddPointLight(PointLight pointLight);
@@ -50,7 +50,6 @@ public:
 
 private:
   static inline glm::vec2 screen;
-  static inline Camera *camera = nullptr;
   static inline optional<DirectionalLight> directionalLight;
   static inline vector<PointLight> pointLights;
   static inline vector<DrawCall> drawCalls;

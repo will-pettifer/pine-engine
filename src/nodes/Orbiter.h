@@ -12,21 +12,20 @@ using namespace std;
 class Orbiter : public Node {
 public:
   float age;
-  float size;
-  float orbitalDistance;
+  float height;
+  float radius;
+  float speed;
 
-  Orbiter(float size) {
-    this->size = size;
+  Orbiter(float height, float radius, float speed) {
+    this->height = height;
+    this->radius = radius;
+    this->speed = speed;
     age = hlp::RandFloat() * numbers::pi * 2;
-    orbitalDistance = hlp::RandFloat() * size * 5 + 1;
-    scale = glm::vec3{size};
   }
 
-  void Update(float delta) override {
-    age += (1 / (size * size)) * delta * 0.2;
-    position =
-        glm::vec3{cos(age / orbitalDistance), sin(age / orbitalDistance), 0} *
-        orbitalDistance;
+  void Update(float delta, Input *input) override {
+    age += delta * speed;
+    position = glm::vec3{cos(age) * radius, height, sin(age) * radius};
   }
 };
 

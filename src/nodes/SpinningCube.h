@@ -23,7 +23,7 @@ public:
     rotationSpeed = 2;
   }
 
-  void Update(float delta) override {
+  void Update(float delta, Input *input) override {
     // position += direction * delta * speed;
     rotation *= glm::angleAxis(delta * rotationSpeed, glm::vec3{0, 1, 0});
   }

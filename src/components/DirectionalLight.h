@@ -19,7 +19,8 @@ public:
 
   void Render(glm::mat4 transform) override {
     AssetManager::AddDirectionalLight(
-        {colour, rotation * glm::vec3(0.0f, 0.0f, -1.0f), intensity});
+        {colour, GetGlobalRotation() * glm::vec3(0.0f, 0.0f, -1.0f),
+         intensity});
   }
 };
 

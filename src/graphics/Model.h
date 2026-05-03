@@ -20,7 +20,7 @@ using namespace std;
 
 class Model {
 public:
-  vector<Texture> textures_loaded;
+  vector<Texture> texturesLoaded;
   vector<Mesh> meshes;
   string directory;
 

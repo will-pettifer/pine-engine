@@ -24,7 +24,7 @@ public:
 
   void Render(glm::mat4 transform) override {
     AssetManager::AddPointLight(
-        {colour, position, radius, innerRadius, intensity});
+        {colour, GetGlobalPosition(), radius, innerRadius, intensity});
   }
 };
 

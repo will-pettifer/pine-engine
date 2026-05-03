@@ -7,23 +7,14 @@
 #include <sstream>
 #include <iostream>
 
-void Shader::Init(const char *vertexPath, const char *fragmentPath,
-                  bool tesselation) {
-  string tcsPath = "assets/shaders/tcs.glsl";
-  string tesPath = "assets/shaders/tes.glsl";
+void Shader::Init(const char *vertexPath, const char *fragmentPath) {
   string vertexCode;
   string fragmentCode;
-  string tcsCode;
-  string tesCode;
   ifstream vShaderFile;
   ifstream fShaderFile;
-  ifstream tcsShaderFile;
-  ifstream tesShaderFile;
 
   vShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
   fShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
-  tcsShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
-  tesShaderFile.exceptions(ifstream::failbit | ifstream::badbit);
   try {
     vShaderFile.open(vertexPath);
     fShaderFile.open(fragmentPath);
@@ -34,18 +25,6 @@ void Shader::Init(const char *vertexPath, const char *fragmentPath,
     fShaderFile.close();
     vertexCode = vShaderStream.str();
     fragmentCode = fShaderStream.str();
-
-    if (tesselation) {
-      tcsShaderFile.open(tcsPath);
-      tesShaderFile.open(tesPath);
-      stringstream tcsShaderStream, tesShaderStream;
-      tcsShaderStream << tcsShaderFile.rdbuf();
-      tesShaderStream << tesShaderFile.rdbuf();
-      tcsShaderFile.close();
-      tesShaderFile.close();
-      tcsCode = tcsShaderStream.str();
-      tesCode = tesShaderStream.str();
-    }
   } catch (ifstream::failure &e) {
     cout << "ERROR::SHADER::FILE_NOT_SUCCESSFULLY_READ: " << e.what() << endl;
   }
@@ -67,35 +46,10 @@ void Shader::Init(const char *vertexPath, const char *fragmentPath,
   ID = glCreateProgram();
   glAttachShader(ID, vertex);
   glAttachShader(ID, fragment);
-
-  u_int tcs = 0, tes = 0;
-  if (tesselation) {
-    const char *tcsShaderCode = tcsCode.c_str();
-    const char *tesShaderCode = tesCode.c_str();
-
-    tcs = glCreateShader(GL_TESS_CONTROL_SHADER);
-    glShaderSource(tcs, 1, &tcsShaderCode, NULL);
-    glCompileShader(tcs);
-    checkCompileErrors(tcs, "TESS_CONTROL");
-
-    tes = glCreateShader(GL_TESS_EVALUATION_SHADER);
-    glShaderSource(tes, 1, &tesShaderCode, NULL);
-    glCompileShader(tes);
-    checkCompileErrors(tes, "TESS_EVALUATION");
-
-    glAttachShader(ID, tcs);
-    glAttachShader(ID, tes);
-  }
-
   glLinkProgram(ID);
   checkCompileErrors(ID, "PROGRAM");
-
   glDeleteShader(vertex);
   glDeleteShader(fragment);
-  if (tcs)
-    glDeleteShader(tcs);
-  if (tes)
-    glDeleteShader(tes);
 }
 
 void Shader::Use() const { glUseProgram(ID); }

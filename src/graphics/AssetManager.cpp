@@ -5,12 +5,12 @@
 #include "AssetManager.h"
 
 #include "Model.h"
+#include "Scene.h"
 
 #include <algorithm>
 
-void AssetManager::Init(Camera *cam, float scrWidth, float scrHeight) {
+void AssetManager::Init(float scrWidth, float scrHeight) {
   screen = {scrWidth, scrHeight};
-  camera = cam;
   FindShader("default");
 }
 
@@ -35,9 +35,9 @@ void AssetManager::Draw() {
     return false;
   });
 
-  glm::mat4 projection = glm::perspective(glm::radians(camera->Zoom),
+  glm::mat4 projection = glm::perspective(glm::radians(Scene::camera->zoom),
                                           screen.x / screen.y, 0.1f, 100.0f);
-  glm::mat4 view = camera->GetViewMatrix();
+  glm::mat4 view = Scene::camera->GetViewMatrix();
 
   string lastShader, lastModel;
   shared_ptr<Shader> shader;
@@ -51,6 +51,8 @@ void AssetManager::Draw() {
 
       shader->setMat4("projection", projection);
       shader->setMat4("view", view);
+
+      shader->setInt("snapRes", 80);
 
       shader->setVec3("ambientLight", ambientLight);
       shader->setBool("dLight.enabled", directionalLight.has_value());

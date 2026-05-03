@@ -5,6 +5,8 @@ layout (location = 2) in vec2 aTexCoords;
 
 noperspective out vec2 TexCoords;
 
+uniform int snapRes;
+
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
@@ -16,5 +18,5 @@ void main()
     TexCoords = aTexCoords;
 
     gl_Position = projection * view * worldPos;
-    gl_Position.xy = round(gl_Position.xy * 10) / 10;
+    gl_Position.xy = round(gl_Position.xy / gl_Position.w * snapRes) / snapRes * gl_Position.w;
 }

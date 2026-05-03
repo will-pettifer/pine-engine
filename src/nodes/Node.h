@@ -7,9 +7,11 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include "Input.h"
 #include <list>
 #include <memory>
 #include <string>
+#include <GLFW/glfw3.h>
 
 using namespace std;
 
@@ -33,16 +35,19 @@ public:
   void QueueDelete();
 
   virtual void OnEnterTree();
-  virtual void Update(float delta);
+  virtual void Update(float delta, Input *input);
   virtual void Render(glm::mat4 transform);
-  virtual void Input();
 
   void DeleteQueue();
+
+  glm::vec3 GetGlobalPosition();
+  glm::quat GetGlobalRotation();
+
+  weak_ptr<Node> parent;
 
 private:
   bool hasEnteredTree = false;
 
-  weak_ptr<Node> parent;
   list<shared_ptr<Node>> children;
   list<shared_ptr<Node>> deleteQueue;
 };

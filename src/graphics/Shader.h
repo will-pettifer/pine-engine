@@ -14,8 +14,7 @@ class Shader {
 public:
   u_int ID;
 
-  void Init(const char *vertexPath, const char *fragmentPath,
-            bool tesselation = false);
+  void Init(const char *vertexPath, const char *fragmentPath);
 
   void Use() const;
 

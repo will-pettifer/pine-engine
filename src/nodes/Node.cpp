@@ -42,7 +42,7 @@ void Node::QueueDelete() {
 
 void Node::OnEnterTree() {}
 
-void Node::Update(float delta) {}
+void Node::Update(float delta, Input *input) {}
 
 void Node::Render(glm::mat4 transform) {}
 
@@ -56,4 +56,18 @@ void Node::DeleteQueue() {
   deleteQueue.clear();
 }
 
-void Node::Input() {}
+glm::vec3 Node::GetGlobalPosition() {
+  auto p = parent.lock();
+  if (p) {
+    return p->GetGlobalPosition() + p->GetGlobalRotation() * position;
+  }
+  return position;
+}
+
+glm::quat Node::GetGlobalRotation() {
+  auto p = parent.lock();
+  if (p) {
+    return p->GetGlobalRotation() * rotation;
+  }
+  return rotation;
+}

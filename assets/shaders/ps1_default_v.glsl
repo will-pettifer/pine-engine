@@ -16,7 +16,6 @@ struct PointLight {
 uniform int numPLights;
 uniform PointLight pointLights[MAX_LIGHTS];
 
-// Directional light
 struct DirectionalLight {
     bool enabled;
     vec3 direction;
@@ -25,12 +24,15 @@ struct DirectionalLight {
 };
 uniform DirectionalLight dLight;
 
-noperspective out vec3 vertexColour;
-noperspective out vec2 TexCoords;
-
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
+
+uniform int snapRes;
+
+noperspective out vec3 vertexColour;
+noperspective out vec2 TexCoords;
+
 
 void main()
 {
@@ -40,7 +42,7 @@ void main()
     TexCoords = aTexCoords;
 
     gl_Position = projection * view * worldPos;
-    gl_Position.xy = round(gl_Position.xy * 10) / 10;
+    gl_Position.xy = round(gl_Position.xy / gl_Position.w * snapRes) / snapRes * gl_Position.w;
 
     vec3 lighting = ambientLight;
 

@@ -22,8 +22,8 @@ add_executable(${PROJECT_NAME}
         src/graphics/Model.h
         src/graphics/Mesh.cpp
         src/graphics/Mesh.h
-        src/graphics/Camera.cpp
-        src/graphics/Camera.h
+        src/nodes/Camera.cpp
+        src/nodes/Camera.h
         src/nodes/SpinningCube.h
         src/Helpers.h
         src/nodes/GameManager.cpp
@@ -33,6 +33,10 @@ add_executable(${PROJECT_NAME}
         src/components/PointLight.h
         src/components/DirectionalLight.cpp
         src/components/DirectionalLight.h
+        src/nodes/Skybox.h
+        src/nodes/PlayerController.cpp
+        src/nodes/PlayerController.h
+        src/Input.h
 )
 
 add_custom_target(copy_assets ALL
