@@ -74,7 +74,7 @@ int main() {
 #endif
 
   GLFWwindow *window =
-      glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LearnOpenGL", NULL, NULL);
+      glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Pine Engine", NULL, NULL);
   if (window == NULL) {
     std::cout << "Failed to create GLFW window" << std::endl;
     glfwTerminate();
