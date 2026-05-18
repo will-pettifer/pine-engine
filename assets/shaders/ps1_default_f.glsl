@@ -16,6 +16,7 @@ const mat4 bayer = mat4(
 void main()
 {
     vec4 colour = texture(albedo, TexCoords);
+    //    colour = vec4(0.5, 0.5, 0.5, 0.5);
 
     ivec2 pos = ivec2(gl_FragCoord.xy) % 4;
     float threshold = bayer[pos.x][pos.y];
